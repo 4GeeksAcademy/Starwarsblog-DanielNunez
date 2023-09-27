@@ -2,21 +2,22 @@ import React, { Component, useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Personajes = () => {
+export const Planetas = () => {
     const { store, actions } = useContext(Context)
     useEffect(() => {
-        actions.obtenerPersonajes()
+        actions.obtenerPlanetas()
     }, [])
     return (<>
         <div className="card-group">
             <div className="d-flex flex-row overflow-scroll">
-                {store.personajes.map((item, id) => (
+                {store.planetas.map((item, id) => (
                     <div key={id} className="card" style={{ width: "18rem", flex: "none", margin: "10px" }}>
-                        <img src={"https://starwars-visualguide.com/assets/img/characters/" + (id + 1) + ".jpg"} className="card-img-top" alt="..." />
+                        {id === 0 ? <img src={"https://static.wikia.nocookie.net/esstarwars/images/b/b0/Tatooine_TPM.png"} className="card-img-top" alt="..." /> :
+                            <img src={"https://starwars-visualguide.com/assets/img/planets/" + (id + 1) + ".jpg"} className="card-img-top" alt="..." />}
                         <div className="card-body">
                             <h5 className="card-title">Name: {item.name}</h5>
-                            <p className="card-text">Gender: {item.gender}.</p>
-                            <p className="card-text">Eye Color: {item.eye_color}.</p>
+                            <p className="card-text">Climate: {item.climate}.</p>
+                            <p className="card-text">Terrain: {item.terrain}.</p>
                             <Link to={"/single/" + (id + 1)} className="btn btn-primary">More Info</Link>
                         </div>
                     </div>
