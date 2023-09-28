@@ -18,7 +18,7 @@ export const SinglePlanets = props => {
             <div className="card mb-3" style={{ maxWidth: "540px" }}>
                 <div className="row g-0">
                     <div className="col-md-4">
-                        {(params.theid) === 1 ?
+                        {(params.theid) == 1 ?
                             <img src={"https://static.wikia.nocookie.net/esstarwars/images/b/b0/Tatooine_TPM.png"} className="img-fluid rounded-start" alt="..." /> :
                             <img src={"https://starwars-visualguide.com/assets/img/planets/" + (params.theid) + ".jpg"} className="img-fluid rounded-start" alt="..." />}
                     </div>
@@ -38,6 +38,6 @@ export const SinglePlanets = props => {
     );
 };
 
-Single.propTypes = {
+SinglePlanets.propTypes = {
     match: PropTypes.object
 };

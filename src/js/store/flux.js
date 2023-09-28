@@ -1,13 +1,16 @@
+import { element } from "prop-types";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			personajes: [], 
+			personajes: [],
 			personaje: {},
 			planetas: [],
 			planeta: {},
+			favoritos: [],
 		},
 		actions: {
-			obtenerPersonajes: async() => {
+			obtenerPersonajes: async () => {
 				try {
 					const response = await fetch("https://swapi.dev/api/people")
 					const data = await response.json()
@@ -21,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			obtenerPlanetas: async() => {
+			obtenerPlanetas: async () => {
 				try {
 					const response = await fetch("https://swapi.dev/api/planets")
 					const data = await response.json()
@@ -35,9 +38,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			personajeIndividual: async(id) =>{
+			personajeIndividual: async (id) => {
 				try {
-					const response = await fetch("https://swapi.dev/api/people/"+id)
+					const response = await fetch("https://swapi.dev/api/people/" + id)
 					const data = await response.json()
 					console.log(data)
 					setStore({
@@ -49,9 +52,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			planetaIndividual: async(id) =>{
+			planetaIndividual: async (id) => {
 				try {
-					const response = await fetch("https://swapi.dev/api/planets/"+id)
+					const response = await fetch("https://swapi.dev/api/planets/" + id)
 					const data = await response.json()
 					console.log(data)
 					setStore({
@@ -61,6 +64,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 
+			},
+
+			favoritos: (item) => {
+				const store = getStore()
+				if (
+					store.favoritos.includes(item)
+				) {
+					let auxiliar = []
+					auxiliar = store.favoritos.filter((element) => element !== item)
+					setStore({ favoritos: auxiliar })
+				}
+				else {
+					setStore({ favoritos: [...store.favoritos, item] })
+				}
 			},
 
 			// Use getActions to call a function within a fuction

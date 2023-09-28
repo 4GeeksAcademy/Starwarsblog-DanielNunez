@@ -18,7 +18,8 @@ export const Planetas = () => {
                             <h5 className="card-title">Name: {item.name}</h5>
                             <p className="card-text">Climate: {item.climate}.</p>
                             <p className="card-text">Terrain: {item.terrain}.</p>
-                            <Link to={"/single/" + (id + 1)} className="btn btn-primary">More Info</Link>
+                            <Link to={"/singlePlanet/" + (id + 1)} className="btn btn-primary">More Info</Link>
+                            <button onClick={() => actions.favoritos(item.name)} type="button" class="btn btn-danger"><i className="fa fa-heart"></i></button>
                         </div>
                     </div>
                 ))}

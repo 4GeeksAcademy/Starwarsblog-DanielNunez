@@ -18,6 +18,7 @@ export const Personajes = () => {
                             <p className="card-text">Gender: {item.gender}.</p>
                             <p className="card-text">Eye Color: {item.eye_color}.</p>
                             <Link to={"/single/" + (id + 1)} className="btn btn-primary">More Info</Link>
+                            <button onClick={()=> actions.favoritos(item.name)} type="button" class="btn btn-danger"><i className="fa fa-heart"></i></button>
                         </div>
                     </div>
                 ))}
